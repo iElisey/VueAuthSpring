@@ -1,5 +1,25 @@
 package com.elos.vueauthspring.controllers;
 
+import com.elos.vueauthspring.models.ERole;
+import com.elos.vueauthspring.models.Role;
+import com.elos.vueauthspring.models.User;
+import com.elos.vueauthspring.payload.request.LoginRequest;
+import com.elos.vueauthspring.payload.response.UserResponse;
+import com.elos.vueauthspring.payload.response.MessageResponse;
+import com.elos.vueauthspring.repository.RoleRepository;
+import com.elos.vueauthspring.repository.UserRepository;
+import com.elos.vueauthspring.security.services.UserDetailsImpl;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 import java.io.*;
 import java.net.URL;
 import java.nio.charset.Charset;
@@ -7,31 +27,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
-import javax.validation.Valid;
-
-import com.elos.vueauthspring.payload.request.LoginRequest;
-import com.elos.vueauthspring.payload.response.JwtResponse;
-import com.elos.vueauthspring.security.services.UserDetailsImpl;
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import com.elos.vueauthspring.models.ERole;
-import com.elos.vueauthspring.models.Role;
-import com.elos.vueauthspring.models.User;
-import com.elos.vueauthspring.payload.response.MessageResponse;
-import com.elos.vueauthspring.repository.RoleRepository;
-import com.elos.vueauthspring.repository.UserRepository;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
@@ -105,7 +100,7 @@ public class AuthController {
         List<String> rolesUser = userDetails.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.toList());
-        return ResponseEntity.ok(new JwtResponse(
+        return ResponseEntity.ok(new UserResponse(
                 userDetails.getId(),
                 userDetails.getUsername(),
                 rolesUser));

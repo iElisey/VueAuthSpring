@@ -50,9 +50,123 @@
                       <v-tooltip bottom
                                  :color="usernamea.online.value ? 'green' : 'red'">
                         <template v-slot:activator="{ on, attrs }">
-                          <v-img transition="scale-transition" v-bind="attrs"
-                                 v-on="on"
-                                 :src="'//skin.vimeworld.com/body/'+usernamea.user.username+'.png'"></v-img>
+                          <div v-on="on" v-bind="attrs" id="skin-viewer" :style="cssVars"
+                               class="mr-10 ml-10 mc-skin-viewer-11x legacy legacy-cape spin">
+                            <div class="player">
+                              <!-- Head -->
+                              <div class="head">
+                                <div class="top"></div>
+                                <div class="left"></div>
+                                <div class="front"></div>
+                                <div class="right"></div>
+                                <div class="back"></div>
+                                <div class="bottom"></div>
+                                <div class="accessory">
+                                  <div class="top"></div>
+                                  <div class="left"></div>
+                                  <div class="front"></div>
+                                  <div class="right"></div>
+                                  <div class="back"></div>
+                                  <div class="bottom"></div>
+                                </div>
+                              </div>
+                              <!-- Body -->
+                              <div class="body">
+                                <div class="top"></div>
+                                <div class="left"></div>
+                                <div class="front"></div>
+                                <div class="right"></div>
+                                <div class="back"></div>
+                                <div class="bottom"></div>
+                                <div class="accessory">
+                                  <div class="top"></div>
+                                  <div class="left"></div>
+                                  <div class="front"></div>
+                                  <div class="right"></div>
+                                  <div class="back"></div>
+                                  <div class="bottom"></div>
+                                </div>
+                              </div>
+                              <!-- Left Arm -->
+                              <div class="left-arm">
+                                <div class="top"></div>
+                                <div class="left"></div>
+                                <div class="front"></div>
+                                <div class="right"></div>
+                                <div class="back"></div>
+                                <div class="bottom"></div>
+                                <div class="accessory">
+                                  <div class="top"></div>
+                                  <div class="left"></div>
+                                  <div class="front"></div>
+                                  <div class="right"></div>
+                                  <div class="back"></div>
+                                  <div class="bottom"></div>
+                                </div>
+                              </div>
+                              <!-- Right Arm -->
+                              <div class="right-arm">
+                                <div class="top"></div>
+                                <div class="left"></div>
+                                <div class="front"></div>
+                                <div class="right"></div>
+                                <div class="back"></div>
+                                <div class="bottom"></div>
+                                <div class="accessory">
+                                  <div class="top"></div>
+                                  <div class="left"></div>
+                                  <div class="front"></div>
+                                  <div class="right"></div>
+                                  <div class="back"></div>
+                                  <div class="bottom"></div>
+                                </div>
+                              </div>
+                              <!-- Left Leg -->
+                              <div class="left-leg">
+                                <div class="top"></div>
+                                <div class="left"></div>
+                                <div class="front"></div>
+                                <div class="right"></div>
+                                <div class="back"></div>
+                                <div class="bottom"></div>
+                                <div class="accessory">
+                                  <div class="top"></div>
+                                  <div class="left"></div>
+                                  <div class="front"></div>
+                                  <div class="right"></div>
+                                  <div class="back"></div>
+                                  <div class="bottom"></div>
+                                </div>
+                              </div>
+                              <!-- Right Leg -->
+                              <div class="right-leg">
+                                <div class="top"></div>
+                                <div class="left"></div>
+                                <div class="front"></div>
+                                <div class="right"></div>
+                                <div class="back"></div>
+                                <div class="bottom"></div>
+                                <div class="accessory">
+                                  <div class="top"></div>
+                                  <div class="left"></div>
+                                  <div class="front"></div>
+                                  <div class="right"></div>
+                                  <div class="back"></div>
+                                  <div class="bottom"></div>
+                                </div>
+                              </div>
+                              <!-- Cape -->
+                              <div class="cape">
+                                <div class="top"></div>
+                                <div class="left"></div>
+                                <div class="front"></div>
+                                <div class="right"></div>
+                                <div class="back"></div>
+                                <div class="bottom"></div>
+                              </div>
+                            </div>
+                          </div>
+
                         </template>
                         <h4>{{ usernamea.user.username }}</h4>
                         <span>{{ usernamea.online.message }}</span>
@@ -72,10 +186,14 @@
                                 v-if="item.color == null && item.text!=='Amount of friends' && item.text!=='Achievements complete'">
                               {{ item.text + ': ' }} <span class="primary--text">{{ item.value }}</span>
                             </v-list-item-title>
-                            <v-list-item-title v-if="item.color != null">{{ item.text + ': ' }} <span
-                                v-text="item.value" v-bind:style="{ color: item.color}"></span>
+                            <v-list-item-title v-if="item.color != null && item.text!=='Status'">{{ item.text + ': ' }}
+                              <span
+                                  v-text="item.value" v-bind:style="{ color: item.color}"></span>
                             </v-list-item-title>
-
+                            <v-list-item-title v-if="item.text==='Status'">{{ item.text + ': ' }}
+                              <span
+                                  v-text="item.value" v-bind:style="{ color: item.color}"></span>
+                            </v-list-item-title>
                             <v-list-item-title v-if="item.text==='Amount of friends'">
                               {{ item.text + ': ' }}
                               <span class="primary--text" v-if="!isLoadingFriends" v-text="item.value"></span>
@@ -191,7 +309,6 @@
         </v-tab-item>
         <v-tab-item value="tab-3">
           <v-card>
-
             <v-container pt-0 pb-0 fluid grid-list-lg>
               <v-card-text>
                 <v-expansion-panels v-if="usernamea">
@@ -240,67 +357,97 @@
                             </v-col>
                           </v-row>
                         </v-col>
+                        <template v-if="!isLoadingFriends && friends.length>0">
+                          <v-col cols="12" sm="6">
+                            <v-container class="max-width">
+                              <v-pagination
+                                  v-model="page"
+                                  :length="Math.ceil(filteredListLength / size)"
+                              ></v-pagination>
+                            </v-container>
+
+                          </v-col>
+                          <v-col cols="12" sm="6">
+                            <v-container class="max-width">
+
+                              <v-slider
+                                  v-model="size"
+                                  class="align-center "
+                                  :max="filteredListLength"
+                                  :min="1"
+                                  hide-details>
+                                <template v-slot:append>
+                                  <v-text-field
+                                      v-model="size"
+                                      class="mt-0 pt-0"
+                                      hide-details
+                                      single-line
+                                      type="number"
+                                      style="width: 60px"
+                                  ></v-text-field>
+                                </template>
+                              </v-slider>
+                            </v-container>
+                          </v-col>
+                        </template>
 
                         <v-col xs="12" sm="6" md="4" lg="3" xl="2" :key="key2"
                                v-for="(friend,key2) in filteredList">
-                          <v-lazy
-                              v-model="friend.isActive" :options="{threshold: 1}"
-                              class="fill-height" transition="scroll-x-transition">
-                            <v-card v-if="!isLoadingFriends">
-                              <div class="d-flex justify-start flex-row">
 
-                                <div class="pa-2">
-                                  <v-badge :color="friend.online.value ? 'green' : 'red'" top overlap bordered
-                                           dot>
-                                    <v-tooltip bottom
-                                               :color="friend.online.value ? 'green' : 'red'">
-                                      <template v-slot:activator="{ on, attrs }">
-                                        <v-img
-                                            lazy-src=""
-                                            v-bind="attrs"
-                                            v-on="on"
-                                            style="height: 100px; width: 100px;"
-                                            @mouseover="friend.skinType = 'head'"
-                                            @mouseleave="friend.skinType = 'helm'"
-                                            :src="'//skin.vimeworld.com/helm/3d/'+friend.username+'.png'"
-                                            transition="fade-transition"
-                                        >
-                                          <template v-slot:placeholder>
-                                            <v-row
-                                                align="center"
-                                                class="fill-height ma-0"
-                                                justify="center"
-                                            >
-                                              <v-progress-circular
-                                                  color="grey"
-                                                  indeterminate
-                                              ></v-progress-circular>
-                                            </v-row>
-                                          </template>
-                                        </v-img>
-                                      </template>
-                                      <h4>{{ friend.username }}</h4>
-                                      <span>{{ friend.online.message }}</span>
+                          <v-card v-if="!isLoadingFriends">
+                            <div class="d-flex justify-start flex-row">
 
-                                    </v-tooltip>
-                                  </v-badge>
-                                </div>
+                              <div class="pa-2">
+                                <v-badge :color="friend.online.value ? 'green' : 'red'" top overlap bordered
+                                         dot>
+                                  <v-tooltip bottom
+                                             :color="friend.online.value ? 'green' : 'red'">
+                                    <template v-slot:activator="{ on, attrs }">
+                                      <v-img
+                                          lazy-src=""
+                                          v-bind="attrs"
+                                          v-on="on"
+                                          style="height: 100px; width: 100px;"
+                                          @mouseover="friend.skinType = 'head'"
+                                          @mouseleave="friend.skinType = 'helm'"
+                                          :src="'//skin.vimeworld.com/helm/3d/'+friend.username+'.png'"
+                                          transition="fade-transition"
+                                      >
+                                        <template v-slot:placeholder>
+                                          <v-row
+                                              align="center"
+                                              class="fill-height ma-0"
+                                              justify="center"
+                                          >
+                                            <v-progress-circular
+                                                color="grey"
+                                                indeterminate
+                                            ></v-progress-circular>
+                                          </v-row>
+                                        </template>
+                                      </v-img>
+                                    </template>
+                                    <h4>{{ friend.username }}</h4>
+                                    <span>{{ friend.online.message }}</span>
 
-                                <div class="pa-2">
-                                  <h4 class="pointer"
-                                      @click="getUser(friend.username)"><span
-                                      v-bind:style="{ color: getColorRank(friend.rank)}">{{
-                                      getNameRank(friend.rank)
-                                    }}{{
-                                      friend.username
-                                    }}</span></h4>
-                                  <h4>ID: <span class="primary--text"> {{ friend.id }}</span></h4>
-                                  <h4>Level: <span class="primary--text"> {{ friend.level }}</span></h4>
-                                </div>
-
+                                  </v-tooltip>
+                                </v-badge>
                               </div>
-                            </v-card>
-                          </v-lazy>
+
+                              <div class="pa-2">
+                                <h4 class="pointer"
+                                    @click="getUser(friend.username)"><span
+                                    v-bind:style="{ color: getColorRank(friend.rank)}">{{
+                                    getNameRank(friend.rank)
+                                  }}{{
+                                    friend.username
+                                  }}</span></h4>
+                                <h4>ID: <span class="primary--text"> {{ friend.id }}</span></h4>
+                                <h4>Level: <span class="primary--text"> {{ friend.level }}</span></h4>
+                              </div>
+
+                            </div>
+                          </v-card>
                         </v-col>
                         <template v-if="isLoadingFriends">
                           <v-col cols="6">
@@ -311,7 +458,7 @@
                             <v-skeleton-loader v-if="isLoadingFriends"
                                                type="list-item-avatar, divider"></v-skeleton-loader>
                           </v-col>
-                          <v-col xs="12" sm="12" md="6" lg="4" xl="2" v-for="key3 in 25" :key="key3">
+                          <v-col cols="12" xs="12" sm="6" md="4" lg="3" xl="2" v-for="key3 in 25" :key="key3">
                             <v-skeleton-loader v-if="isLoadingFriends" elevation="4"
                                                type="article"
                             ></v-skeleton-loader>
@@ -375,24 +522,20 @@
                               <v-row class="row wrap p-3">
                                 <v-col xs="12" sm="12" md="6" lg="4" xl="2" v-for="(achievement, key) in type"
                                        :key="key">
-                                  <v-lazy
-                                      v-model="achievement.isActive" :options="{threshold: 1}"
-                                      class="fill-height" transition="scroll-x-transition">
-                                    <v-alert
-                                        :type="achievement.complete ? 'success' : 'error'">
-                                      <div class="d-flex justify-start flex-row">
-                                        <v-hover>
-                                          <template>
-                                            <v-scroll-x-transition>
-                                              <div>
-                                                <h3>{{ achievement.title }}</h3>
-                                              </div>
-                                            </v-scroll-x-transition>
-                                          </template>
-                                        </v-hover>
-                                      </div>
-                                    </v-alert>
-                                  </v-lazy>
+                                  <v-alert
+                                      :type="achievement.complete ? 'success' : 'error'">
+                                    <div class="d-flex justify-start flex-row">
+                                      <v-hover>
+                                        <template>
+                                          <v-scroll-x-transition>
+                                            <div>
+                                              <h3>{{ achievement.title }}</h3>
+                                            </div>
+                                          </v-scroll-x-transition>
+                                        </template>
+                                      </v-hover>
+                                    </div>
+                                  </v-alert>
                                 </v-col>
                               </v-row>
                             </v-card>
@@ -507,8 +650,6 @@ import AddFavorite from "../components/AddFavorite";
 import UserService from "../services/user.service";
 import moreGuild from "../components/MoreGuild";
 import VimeService from "../services/vime.service";
-import TimerService from "../services/timer.service";
-import Timer from "../services/timer.service";
 
 const axios = require('axios').default;
 
@@ -519,6 +660,10 @@ export default {
 
   data() {
     return {
+      page: 1,
+      size: 15,
+
+      textColor: "blue",
       keySelect: null,
       tab: null,
       iconLike: 'mdi-cards-heart-outline',
@@ -546,16 +691,33 @@ export default {
       playerLikes: null,
       timer: null,
       doingTimer: false,
-      stats:[],
+      stats: [],
 
     }
   },
 
   computed: {
     filteredList() {
-      return this.friends.filter(friend => {
-        return friend.username.toLowerCase().includes(this.searchFriend.toLowerCase())
-      })
+      if (this.size <= 0) {
+        this.size = 15;
+      }
+      const start = (this.page * this.size) - this.size, end = start + this.size;
+      console.log(start)
+      console.log(end);
+      let filter = this.friends.filter(user => {
+        return user.username.toLowerCase().includes(this.searchFriend.toLowerCase())
+      });
+      if (filter.length < this.friends.length) {
+        this.page = 1;
+      }
+      let slice = filter.slice(start, end);
+      return slice;
+    },
+    filteredListLength: function () {
+      let filter = this.friends.filter(user => {
+        return user.username.toLowerCase().includes(this.searchFriend.toLowerCase())
+      });
+      return filter.length;
     },
     currentUser() {
       return this.$store.state.auth.user;
@@ -563,8 +725,15 @@ export default {
     requestCount() {
       return this.$store.state.requestCount;
     },
+    cssVars() {
+      return {
+        '--bg-skin': 'url(https://mc.vimeworld.com/launcher/skins/' + this.usernamea.user.username + '.png)',
+        '--bg-cape': 'url(https://mc.vimeworld.com/launcher/cloaks/' + this.usernamea.user.username + '.png)',
+      }
+    }
   },
   methods: {
+
     showNotification(text) {
       this.$toast.error(text, {
         position: "top-right",
@@ -581,7 +750,6 @@ export default {
         rtl: false
       });
     },
-
 
 
     day(sec) {
@@ -667,8 +835,7 @@ export default {
                 this.err = 'Player not found!';
                 this.showNotification(this.err);
 
-              }
-              else if (response.data.error != null) {
+              } else if (response.data.error != null) {
                 switch (response.data.error.error_code) {
                   case -3:
                   case -2:
@@ -690,8 +857,7 @@ export default {
                 this.showNotification(this.err);
 
 
-              }
-              else {
+              } else {
                 response.data.forEach(el => this.id = el.id);
                 UserService.getLikes(this.id).then((response) => {
                   this.iconLike = 'mdi-cards-heart-outline';
@@ -787,6 +953,13 @@ export default {
             this.playerData = [];
             this.playerData.push({value: this.usernamea.user.id, icon: 'mdi-card-account-details', text: 'ID'})
             this.playerData.push({value: this.usernamea.user.level, icon: 'mdi-finance', text: 'Level'})
+            this.playerData.push({
+              value: this.usernamea.online.message,
+              icon: 'mdi-account-badge-outline',
+              text: 'Status',
+              color: this.usernamea.online.value ? '#4CAF50' : '#F44336',
+
+            })
             this.playerData.push({
               value: this.usernamea.user.playedSeconds,
               icon: 'mdi-clock-time-nine',
@@ -985,6 +1158,17 @@ export default {
 }
 </script>
 <style scoped>
+@import '../../../css/minecraft-css.css';
+
+#skin-viewer * {
+  background-image: var(--bg-skin);
+}
+
+#skin-viewer .cape {
+  background-image: var(--bg-cape);
+}
+
+
 .v-card--reveal {
   bottom: 0;
   opacity: 1 !important;
@@ -1012,4 +1196,5 @@ li {
 .bold {
   font-weight: bold;
 }
+
 </style>

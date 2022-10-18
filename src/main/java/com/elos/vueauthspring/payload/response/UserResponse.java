@@ -1,14 +1,13 @@
 package com.elos.vueauthspring.payload.response;
 import java.util.List;
 
-public class JwtResponse {
+public class UserResponse {
     private String token;
-    private String type = "Bearer";
     private Long id;
     private String username;
     private List<String> roles;
     private String avatarUrl;
-    public JwtResponse(Long id, String username, List<String> roles) {
+    public UserResponse(Long id, String username, List<String> roles) {
         this.id = id;
         this.username = username;
         this.roles = roles;
@@ -21,14 +20,6 @@ public class JwtResponse {
 
     public void setAccessToken(String accessToken) {
         this.token = accessToken;
-    }
-
-    public String getTokenType() {
-        return type;
-    }
-
-    public void setTokenType(String tokenType) {
-        this.type = tokenType;
     }
 
     public Long getId() {

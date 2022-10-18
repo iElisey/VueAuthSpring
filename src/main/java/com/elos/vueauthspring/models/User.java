@@ -15,6 +15,8 @@ public class User {
     @Id
     private Long id;
 
+    private String email;
+
     private String username;
 
     private boolean isEnabled;
@@ -102,6 +104,14 @@ public class User {
 
     public void setEnabled(boolean enabled) {
         isEnabled = enabled;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
 

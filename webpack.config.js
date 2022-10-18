@@ -11,8 +11,6 @@ module.exports = {
         port: 8000,
         allowedHosts: [
             'localhost:8080',
-            '192.168.0.10:8080',
-            '192.168.0.16:8080',
         ]
     },
     module: {

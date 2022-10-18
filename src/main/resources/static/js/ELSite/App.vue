@@ -65,11 +65,36 @@
                   <v-icon>mdi-account</v-icon>&nbsp;Profile
                 </v-list-item>
               </router-link>
-              <a href="/logout"  class="text-decoration-none">
+              <div @click.stop="dialog=true" class="text-decoration-none">
                 <v-list-item class="red--text" link>
                   <v-icon color="red">mdi-logout</v-icon>&nbsp;Logout
                 </v-list-item>
-              </a>
+                <v-dialog
+                    v-model="dialog"
+                    max-width="280"
+                >
+                  <v-card>
+
+                    <v-card-title class="text-h6">
+                      You really wan't logout?
+                    </v-card-title>
+                    <v-card-actions>
+
+                      <v-spacer></v-spacer>
+
+                      <v-btn
+                          color="primary darken-1"
+                          text
+                          href="logout">
+                          YES
+                      </v-btn>
+                      <v-btn text color="error darken-1" @click="dialog = false">
+                        CANCEL
+                      </v-btn>
+                    </v-card-actions>
+                  </v-card>
+                </v-dialog>
+              </div>
 
             </v-list>
           </v-menu>
@@ -130,6 +155,8 @@ export default {
     isLoading: false,
     isLoadingUser: false,
     isMobile: false,
+    dialog: false,
+
   }),
   computed: {
     currentUser() {
